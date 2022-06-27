@@ -1,14 +1,41 @@
+// /*
+// #0295DB - #0B0E1B
+// #2165B5 - #FFFFFF
+// #B92970 - #161D28
+// #E8D58C - #212121
+// #D34B81 - #3A4353
+
+// #E04148 - #654384
+// #D51B4C - #580E43
+// #E25448 - #441B15
+// #E8D460 - #E18B5D
+// */
+
 html
     scroll-behavior: smooth
 
 body
-    padding: 80px 0
+    height: 100vh
+    width: 100%
+    // overflow: hidden
 
 .wrapper
+    // position: absolute
     position: relative
+    top: 0
+    left: 0
     width: 100%
-    height: calc(100vh - 160px)
-    padding: 0 80px
+    height: 100vh
+    padding: 80px
+    // &:not(:nth-of-type(1))
+    //     margin-top: 100%
+    // &:nth-of-type(6)
+    //     margin-top: 0
+    //     margin-left: 100%
+
+// @for $i from 1 to 8
+//     .wrapper:nth-of-type(#{$i})
+//         z-index: $i
 
 .gray-bg
     background: #F5F5F5
@@ -128,3 +155,33 @@ body
             font-weight: 400
             color: #272822
             margin-top: 32px
+
+.skills
+    padding: 160px
+    &-title
+        font-family: 'Roboto'
+        font-weight: 900
+        font-size: 80px
+        line-height: 94px
+        color: #272822
+    &-item
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-top: 32px
+        &__name
+            font-family: 'Roboto'
+            font-size: 32px
+            line-height: 38px
+            color: #000000
+        &__progress
+            width: min(680px, 100%)
+            height: 14px
+            background: #B9297030
+            border-radius: 8px
+            overflow: hidden
+            &bar
+                height: 100%
+                background: #B92970
+                border-radius: 8px
+                width: 70%
