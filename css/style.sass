@@ -1,0 +1,130 @@
+html
+    scroll-behavior: smooth
+
+body
+    padding: 80px 0
+
+.wrapper
+    position: relative
+    width: 100%
+    height: calc(100vh - 160px)
+    padding: 0 80px
+
+.gray-bg
+    background: #F5F5F5
+
+.yellow-bg
+    background: #E6DB74
+
+.header, .footer, .right-side, .left-side
+    position: fixed
+    width: 80px
+    height: 80px
+    background: #fff
+
+.header
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    padding: 16px 80px
+    top: 0
+    left: 0
+    width: 100%
+    z-index: 2
+
+.footer
+    bottom: 0
+    left: 0
+    width: 100%
+    z-index: 2
+
+.left-side
+    top: 0
+    left: 0
+    height: 100%
+    z-index: 3
+
+.burger
+    width: 640px
+    background: #fff
+
+.right-side
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    gap: 20px
+    top: 0
+    right: 0
+    height: 100%
+    z-index: 3
+
+.main-title
+    position: absolute
+    top: 50%
+    left: 50%
+    max-width: 378px
+    font-family: 'Roboto'
+    font-style: normal
+    font-weight: 900
+    font-size: 80px
+    line-height: 94px
+    color: #272822
+    transform: translate(-50%, -50%)
+    & > span
+        color: #F92672
+
+@keyframes slide-left
+    0%
+        width: 100%
+    100%
+        width: 50%
+
+.slide-on
+    height: 100%
+    width: 50%
+    animation: slide-left 1s ease-in-out
+    &.slide-right
+        width: 100%
+        animation: slide-left 1s ease-in-out reverse
+
+.link
+    text-decoration: none
+    font-family: 'Roboto'
+    font-size: 18px
+    line-height: 21px
+    color: #272822
+    &:active
+        text-decoration: underline
+
+.lang-selector
+    display: flex
+    gap: 4px
+    & > .link.active
+        color: #F92672
+
+.since-txt
+    display: flex
+    justify-content: center
+    align-items: flex-start
+    flex-direction: column
+    height: 100%
+    max-width: 600px
+    padding-left: 160px
+    & > p
+        font-family: 'Roboto'
+        font-style: normal
+        font-weight: 900
+        font-size: 32px
+        line-height: 38px
+        color: #000000
+        &:first-of-type
+            font-style: italic
+            font-weight: 400
+            font-size: 18px
+            line-height: 21px
+            color: #F92672
+        &:last-of-type
+            font-weight: 400
+            color: #272822
+            margin-top: 32px
