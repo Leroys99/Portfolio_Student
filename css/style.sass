@@ -57,23 +57,19 @@ body
     top: 0
     left: 0
     width: 100%
-    z-index: 2
+    z-index: 100
 
 .footer
     bottom: 0
     left: 0
     width: 100%
-    z-index: 2
+    z-index: 100
 
 .left-side
     top: 0
     left: 0
     height: 100%
-    z-index: 3
-
-.burger
-    width: 640px
-    background: #fff
+    z-index: 101
 
 .right-side
     display: flex
@@ -84,7 +80,11 @@ body
     top: 0
     right: 0
     height: 100%
-    z-index: 3
+    z-index: 101
+
+.burger
+    width: 640px
+    background: #fff
 
 .main-title
     position: absolute
@@ -157,6 +157,7 @@ body
             margin-top: 32px
 
 .skills
+    background: #F5F5F5
     padding: 160px
     &-title
         font-family: 'Roboto'
@@ -185,3 +186,39 @@ body
                 background: #B92970
                 border-radius: 8px
                 width: 70%
+
+.experiense
+    background: #F5F5F5
+
+.experiense-text
+    font-family: 'Roboto'
+    font-weight: 900
+    font-size: 80px
+    line-height: 94px
+    color: #272822
+    padding: 80px 0 0 80px
+
+.experiense-item
+    display: flex
+    flex-direction: column
+    padding: 80px 0 0 80px
+    .exp-date, .crtf-link
+        font-family: 'Roboto'
+        font-style: italic
+        font-size: 18px
+        line-height: 21px
+        color: #F92672
+    .exp-place, .exp-job
+        font-family: 'Roboto'
+        font-weight: 900
+        font-size: 32px
+        line-height: 38px
+        color: #000000
+        margin-top: 10px
+    .exp-job
+        font-weight: 400
+        color: #272822
+        margin: 0
+    .crtf-link
+        margin-top: 48px
+        max-width: fit-content
