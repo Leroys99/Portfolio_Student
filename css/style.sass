@@ -31,6 +31,10 @@
     &.right
         top: 0
         left: 100%
+    &.left
+        top: 0
+        left: unset
+        right: 100%
 
 @for $i from 1 to 8
     .wrapper:nth-of-type(#{$i})
@@ -81,13 +85,103 @@
     height: 100%
     z-index: 101
 
-// .burger
-//     display: none
+#burger
+    position: fixed
+    top: 50%
+    left: 55px
+    width: 45px
+    height: 25px
+    z-index: 105
+    cursor: pointer
+    &::before
+        content: ""
+        position: absolute
+        left: 0
+        top: 0
+        width: 45px
+        height: 4px
+        background: #000000
+        transition: all 500ms ease-in-out
+    &>span
+        position: absolute
+        top: 50%
+        left: 0
+        width: 45px
+        height: 4px
+        background: #000000
+        transform: translate(20%, -50%)
+        transition: all 500ms ease-in-out
+    &::after
+        content: ""
+        position: absolute
+        left: 0
+        bottom: 0
+        width: 45px
+        height: 4px
+        background: #000000
+        transition: all 500ms ease-in-out
+    &:hover
+        &::before
+            transform: translate(10px, 0)
+        &>span
+            transform: translate(0, -50%)
+        &::after
+            transform: translate(-10px, 0)
+    &.open
+        &::before
+            transform: rotate(28deg)
+            transform-origin: top left
+        &>span
+            width: 0
+        &::after
+            transform: rotate(-28deg)
+            transform-origin: bottom left
 
-// .burger
-//     width: 50%
-//     height: 100vh
-//     background: #fff
+#menu
+    display: flex
+    justify-content: flex-start
+    align-items: stretch
+    position: fixed
+    margin-left: -100%
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    transition: margin-left 300ms ease-in-out
+    z-index: 104
+    .content
+        width: 0
+        height: 100%
+        background: #ffffff
+        transition: all 1.5s 300ms ease-in-out
+        overflow: hidden
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: flex-start
+        padding-left: 0
+        &>a
+            margin-bottom: 32px
+            text-decoration: none
+            font-family: 'Roboto'
+            font-weight: 900
+            font-size: 32px
+            line-height: 38px
+            color: #272822
+    .window
+        width: 100%
+        height: 100%
+        background: #E6DB74DD
+        opacity: 0
+        transition: all 1.5s 300ms ease-in-out
+    &.open
+        margin-left: 0
+        .content
+            width: 80%
+            padding-left: 160px
+        .window
+            width: 20%
+            opacity: 1
 
 @keyframes unfade-left
     0%

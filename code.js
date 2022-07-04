@@ -22,6 +22,16 @@ window.onload = () => {
   }, 0);
 };
 
+const menu = document.querySelector('#menu');
+const burger = document.querySelector('#burger');
+burger.onclick = () => {
+  menu.classList.toggle('open');
+  burger.classList.toggle('open');
+};
+
+const containsClassLeftOrRight = (item) =>
+  item.classList.contains('right') || item.classList.contains('left');
+
 const setPosition = (page, position) => {
   if (page.classList.contains('right')) {
     page.style.marginLeft = position;
@@ -32,9 +42,8 @@ const setPosition = (page, position) => {
   }
 };
 
-let i = 0;
+let i = 1;
 window.onscroll = () => {
-  //////
   if (window.scrollY === 0) {
     sliderBlock.classList.remove('slide-off');
     mainTitle.classList.remove('fade-on');
@@ -44,68 +53,53 @@ window.onscroll = () => {
     mainTitle.classList.add('fade-on');
   }
 
-  if (pages[i + 1]) {
-    let prevH = pages.reduce(
-      (prev, page, index) => (index < i ? prev + page.scrollHeight : prev),
-      0
-    );
-    let nextH = pages.reduce(
-      (prev, page, index) => (index < i + 1 ? prev + page.scrollHeight : prev),
-      0
-    );
-    if (window.scrollY < nextH) {
-      if (
-        pages[i + 1].classList.contains('right') ||
-        pages[i + 1].classList.contains('left')
-      ) {
-        const margin =
-          window.scrollY -
-          prevH +
-          (pages[i + 1].scrollWidth - pages[i - 1].scrollHeight) -
-          80;
-        setPosition(pages[i + 1], `-${margin}px`);
-      } else {
-        setPosition(pages[i + 1], `-${window.scrollY - prevH}px`);
-      }
-    }
+  const scrollY = window.scrollY + pages[0].scrollHeight;
+  const { prevH, h } = pages.reduce(
+    (prev, page, index) => {
+      if (index <= i) {
+        if (containsClassLeftOrRight(page)) {
+          return {
+            prevH: prev.h,
+            h: prev.h + page.scrollWidth,
+          };
+        }
 
-    if (window.scrollY >= nextH) {
-      if (i + 1 < pages.length - 1) {
-        setPosition(
-          pages[i + 1],
-          `-${
-            pages[i + 1].classList.contains('right') ||
-            pages[i + 1].classList.contains('left')
-              ? pages[i + 1].scrollWidth
-              : pages[i + 1].scrollHeight
-          }px`
-        );
-        i = i + 1;
+        return {
+          prevH: prev.h,
+          h: prev.h + page.scrollHeight,
+        };
       }
-    }
-    if (window.scrollY < nextH) {
-      if (pages[i + 2]) {
-        setPosition(pages[i + 2], `0px`);
-      }
-      if (i > 0) {
-        i = i - 1;
-      } else {
-        i = 0;
-      }
-    }
-  } else {
-    i = pages.length - 2;
+
+      return prev;
+    },
+    { prevH: 0, h: 0 }
+  );
+
+  let key = 'scrollHeight',
+    wKey = 'innerHeight';
+  if (containsClassLeftOrRight(pages[i])) {
+    key = 'scrollWidth';
+    wKey = 'innerWidth';
   }
+  const margin = scrollY - h + pages[i][key];
 
-  if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+  setPosition(pages[i], `-${margin}px`);
+
+  if (scrollY >= h && i < pages.length - 1) {
     setPosition(
-      pages[pages.length - 1],
-      `-${
-        pages[pages.length - 1].classList.contains('right') ||
-        pages[pages.length - 1].classList.contains('left')
-          ? pages[pages.length - 1].scrollWidth
-          : pages[pages.length - 1].scrollHeight
-      }px`
+      pages[i],
+      `-${window[wKey] - (window[wKey] - pages[i][key])}px`
+    );
+    i++;
+  }
+  if (scrollY < prevH && i > 0) {
+    setPosition(pages[i], `0px`);
+    i--;
+  }
+  if (scrollY >= h && i === pages.length - 1) {
+    setPosition(
+      pages[i],
+      `-${window[wKey] - (window[wKey] - pages[i][key])}px`
     );
   }
 };
