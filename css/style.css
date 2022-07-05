@@ -75,7 +75,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 16px 80px;
+  padding: 0 80px 10px;
   top: 0;
   left: 0;
   width: 100%;
@@ -477,7 +477,7 @@
 
 .contact {
   display: flex;
-  padding: 0 80px;
+  padding: 10px 80px 0;
   justify-content: space-between;
 }
 
@@ -492,6 +492,9 @@
 }
 
 .mail-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   text-decoration: none;
   font-style: normal;
   font-weight: 900;
@@ -503,4 +506,13 @@
 .phone {
   font-style: normal;
   color: #000000;
+}
+
+.footer-contact {
+  padding-top: 100%;
+  overflow: hidden;
+  transition: padding 0.3s ease-in-out;
+}
+.footer-contact.show {
+  padding-top: 10px;
 }

@@ -102,4 +102,12 @@ window.onscroll = () => {
       `-${window[wKey] - (window[wKey] - pages[i][key])}px`
     );
   }
+
+  const footer = document.querySelector('.footer-contact');
+  if (i===pages.length-1){
+    footer.classList.add('show');
+  }
+  else{
+    footer.classList.remove('show');
+  }
 };
