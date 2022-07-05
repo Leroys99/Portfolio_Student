@@ -187,20 +187,32 @@
   background: #ffffff;
   transition: all 1.5s 300ms ease-in-out;
   overflow: hidden;
+}
+#menu .content-block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding-left: 0;
+  gap: 32px;
+  padding-left: 160px;
+  height: 100%;
+  min-width: 200px;
 }
-#menu .content > a {
-  margin-bottom: 32px;
+#menu .content-block > .sections {
+  display: block;
   text-decoration: none;
   font-family: "Roboto";
   font-weight: 900;
   font-size: 32px;
   line-height: 38px;
   color: #272822;
+  white-space: nowrap;
+}
+#menu .content-block > .number {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  margin: 48px 0;
 }
 #menu .window {
   width: 100%;
@@ -213,11 +225,10 @@
   margin-left: 0;
 }
 #menu.open .content {
-  width: 80%;
-  padding-left: 160px;
+  width: 60%;
 }
 #menu.open .window {
-  width: 20%;
+  width: 40%;
   opacity: 1;
 }
 
@@ -469,15 +480,18 @@
   padding: 0 80px;
   justify-content: space-between;
 }
-.contact .question, .contact .mail-link, .contact .phone {
+
+.question, .mail-link, .phone {
   font-family: "Roboto";
   font-style: italic;
   font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   color: #F92672;
+  white-space: nowrap;
 }
-.contact .mail-link {
+
+.mail-link {
   text-decoration: none;
   font-style: normal;
   font-weight: 900;
@@ -485,7 +499,8 @@
   line-height: 38px;
   color: #272822;
 }
-.contact .phone {
+
+.phone {
   font-style: normal;
   color: #000000;
 }
