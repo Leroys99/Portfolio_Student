@@ -22,6 +22,9 @@ window.onload = () => {
   }, 0);
 };
 
+var image = document.getElementsByClassName('thumbnail');
+new simpleParallax(image);
+
 const menu = document.querySelector('#menu');
 const burger = document.querySelector('#burger');
 burger.onclick = () => {
@@ -42,6 +45,9 @@ const setPosition = (page, position) => {
   }
 };
 
+const skillsIndex = pages.findIndex((page) =>
+  page.classList.contains('skills')
+);
 let i = 1;
 window.onscroll = () => {
   if (window.scrollY === 0) {
@@ -102,12 +108,23 @@ window.onscroll = () => {
       `-${window[wKey] - (window[wKey] - pages[i][key])}px`
     );
   }
+  /////////////////////////////////////////
+  const skills = document.querySelectorAll('.skills-item__progressbar');
+  if (i >= skillsIndex) {
+    skills.forEach((skill) => {
+      const progress = Number(skill.getAttribute('data-progress'));
+      if (progress && progress > 0) {
+        skill.style.width = `${progress}%`;
+      }
+    });
+  } else {
+    skills.forEach((skill) => (skill.style.width = ''));
+  }
 
   const footer = document.querySelector('.footer-contact');
-  if (i===pages.length-1){
+  if (i === pages.length - 1) {
     footer.classList.add('show');
-  }
-  else{
+  } else {
     footer.classList.remove('show');
   }
 };
